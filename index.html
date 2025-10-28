@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>HealthBridge</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===========================
+       Root variables - change colors/sizes here to theme the whole page
+       =========================== */
+    :root{
+      --bg: #f6fbff;                /* page background color (soft white/blue) */
+      --card-bg: #ffffff;           /* card backgrounds */
+      --muted: #6b7280;             /* muted paragraph text */
+      --accent: #5bc0eb;            /* sky-blue accent used across the site */
+      --accent-600: #2b9bd3;        /* slightly darker accent for hover states */
+      --soft: #e9f8ff;              /* subtle tint used for icon backgrounds */
+      --radius: 12px;               /* border radius for cards & inputs */
+      --max-width: 1200px;          /* main content max width */
+      --container-padding: 1.25rem; /* consistent horizontal padding (20px) */
+      --shadow: 0 6px 18px rgba(22,32,50,0.06); /* gentle card shadow */
+    }
+
+    /* ===========================
+       Global Resets & Base Styles
+       Reset margins, set font, basic elements
+       =========================== */
+    * { box-sizing: border-box; } /* include padding & border in element width calculation */
+    html, body { height: 100%; }  /* ensure full-height elements can work if needed */
+
+    body {
+      margin: 0;                                 /* remove browser default margin */
+      font-family: "Inter", Arial, sans-serif;   /* set a clean UI font */
+      background: var(--bg);                     /* soft background color */
+      color: #0f1724;                            /* default text color */
+      -webkit-font-smoothing: antialiased;       /* nicer font rendering */
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.45;                         /* comfortable line height */
+      font-size: 16px;                           /* base font size */
+    }
+
+    img { display: block; max-width: 100%; height: auto; } /* image sizing rules */
+
+    a { color: inherit; text-decoration: none; } /* links inherit text color unless styled */
+
+    /* ===========================
+       Header / Navbar styles — mobile-first
+       =========================== */
+    .header{
+      background: var(--accent);                       /* full-width header background */
+      color: #fff;                                     /* header text color */
+      display: flex;                                   /* use flexbox for layout */
+      align-items: center;                             /* vertically center items */
+      justify-content: space-between;                  /* space between brand and nav button */
+      padding: 0.5rem var(--container-padding);        /* top-bottom and left-right padding */
+      position: sticky;                                /* keeps header on top while scrolling */
+      top: 0;
+      z-index: 50;                                     /* above other content */
+      box-shadow: 0 2px 8px rgba(43,155,211,0.06);     /* subtle header shadow */
+    }
+
+    /* Site brand (logo + name) */
+    .site-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;             /* small gap between brand mark and name */
+      font-weight: 700;
+      font-size: 1.125rem;
+    }
+
+    /* small square brand mark with "HB" initials */
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.06));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #fff;
+      box-shadow: inset 0 -2px 6px rgba(0,0,0,0.02);
+    }
+
+    /* Mobile nav toggle (hamburger) */
+    .nav-toggle {
+      background: transparent;
+      border: 0;
+      color: #fff;
+      font-size: 1.45rem;
+      display: block; /* visible on mobile, hidden on desktop via media query */
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    /* Nav list for mobile: initially hidden, becomes visible when .show is added */
+    .nav-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;           /* stack links vertically on mobile */
+      gap: 0.25rem;
+      position: absolute;               /* remove from document flow */
+      right: 0;
+      top: 64px;                        /* below header */
+      width: 100%;                      /* fill width on small devices */
+      background: var(--accent);        /* match header color for a coherent mobile menu */
+      padding: 0.75rem var(--container-padding);
+      border-top-left-radius: 12px;     /* rounded top corners for the dropdown */
+      border-top-right-radius: 12px;
+      transform-origin: top right;      /* transform origin if you animate later */
+      box-shadow: 0 10px 30px rgba(11,89,121,0.08);
+      display: none;                    /* hidden until toggle activates it */
+    }
+    .nav-list.show { display: flex; }   /* utility class toggled via JS to show the menu */
+
+    .nav-item a {
+      display: block;
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 12px;
+      border-radius: 8px;               /* rounded clickable area */
+      font-weight: 600;
+    }
+    /* hover & focus styles for nav links for better UX */
+    .nav-item a:hover,
+    .nav-item a:focus {
+      background: rgba(255,255,255,0.08);
+      outline: none;
+    }
+
+    /* Desktop styles (min-width:768px) - show links inline and hide the hamburger */
+    @media (min-width: 768px) {
+      .nav-toggle { display: none; }   /* hide hamburger on larger screens */
+      .nav-list {
+        position: static;              /* participate in normal flow */
+        display: flex !important;      /* force display (overrides mobile none) */
+        flex-direction: row;           /* show links inline */
+        background: transparent;       /* transparent to show header background */
+        gap: 1rem;                     /* spacing between links on desktop */
+        padding: 0;
+        width: auto;
+        box-shadow: none;
+      }
+      .nav-item a {
+        color: #fff;
+        padding: 8px 10px;
+      }
+    }
+
+    /* ===========================
+       Intro / Hero Section with Stats
+       =========================== */
+    /* container-wide keeps content centered and constrained */
+    .container-wide {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--container-padding);
+    }
+
+    .intro {
+      max-width: var(--max-width);
+      margin: 1.25rem auto;           /* vertical spacing around intro */
+      padding: 1.25rem;
+      text-align: center;             /* center text in hero area */
+      padding-top: 1.75rem;
+    }
+
+    .kicker {
+      display: inline-block;
+      background: var(--soft);
+      color: var(--accent-600);
+      padding: 6px 12px;
+      border-radius: 999px;          /* pill style */
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .intro h1 {
+      margin: 0.5rem 0 0.6rem 0;
+      font-size: 1.75rem;
+      line-height: 1.15;
+      letter-spacing: -0.2px;
+      color: #07203a;
+    }
+
+    .lead {
+      color: var(--muted);
+      margin: 0 auto 1.25rem auto;
+      max-width: 62ch;               /* control line length for readability */
+      font-size: 1rem;
+    }
+
+    /* Stats grid: responsive, uses auto-fit for flexible columns */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+      align-items: stretch;
+    }
+
+    .stat {
+      background: var(--card-bg);
+      border-radius: 10px;
+      padding: 0.85rem;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .stat-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      font-size: 1.25rem;
+      /* icons will be inline SVGs inside the HTML */
+    }
+
+    .stat h3 {
+      margin: 0;
+      color: var(--accent-600);
+      font-size: 1.25rem;
+    }
+
+    .stat p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+
+    /* ===========================
+       Services section: big cards with images
+       =========================== */
+    .services-section {
+      background: transparent;
+      padding: 2rem 1.25rem;
+    }
+    .services-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      padding: 0 0.5rem;
+    }
+
+    .section-title { text-align: center; margin-bottom: 0.75rem; }
+    .section-title h2 { margin: 0.25rem 0 0.5rem; font-size: 1.5rem; color: #07203a; }
+    .section-title .sub { color: var(--muted); font-size: 0.98rem; }
+
+    /* Grid of service cards: responsive with min width 260px */
+    .service-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+      align-items: stretch;
+      margin-top: 1rem;
+    }
+
+    /* Each service card */
+    .service-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 260ms ease, box-shadow 260ms ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .service-card:hover {
+      transform: translateY(-6px); /* lift effect on hover */
+      box-shadow: 0 18px 38px rgba(2,22,52,0.06);
+    }
+
+    /* media area (image) */
+    .media {
+      width: 100%;
+      height: 180px;
+      background: #ddd;
+      overflow: hidden;            /* ensures the image doesn't overflow the container */
+      position: relative;         /* to position overlay tags inside */
+    }
+    .media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;          /* ensures cover behavior without distortion */
+      display: block;
+    }
+
+    /* small tag overlay on top-left of images (e.g., "24/7 Available") */
+    .tag {
+      position: absolute;
+      margin: 12px;
+      padding: 6px 9px;
+      background: var(--accent-600);
+      color: white;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      box-shadow: 0 6px 20px rgba(43,155,211,0.12);
+    }
+
+    .content {
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      flex: 1;                     /* ensures CTA area sits at bottom if content grows */
+    }
+
+    .service-card h3 {
+      margin: 0;
+      font-size: 1.05rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: #07203a;
+    }
+
+    .service-card ul {
+      margin: 0;
+      padding-left: 0;
+      list-style: none;
+      color: var(--muted);
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      font-size: 0.95rem;
+    }
+
+    /* custom bullet boxes on the left of each feature */
+    .service-card ul li {
+      display: flex;
+      gap: 0.6rem;
+      align-items: flex-start;
+    }
+
+    /* bullet style (icon background) */
+    .bullet {
+      min-width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      background: var(--soft);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      color: var(--accent-600);
+    }
+
+    .cta {
+      margin-top: auto;            /* push CTA to bottom of card when space allows */
+      display: flex;
+      gap: 0.6rem;
+      align-items: center;
+    }
+
+    .btn-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      text-decoration: none;
+      color: var(--accent-600);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      border: 0;
+      color: white;
+      padding: 0.6rem 0.9rem;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .btn-primary:hover { background: var(--accent-600); }
+
+    /* ===========================
+       Specialty small cards grid
+       =========================== */
+    .specialties {
+      max-width: var(--max-width);
+      margin: 2rem auto;
+      padding: 0 1.25rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .specialty-card {
+      background: #eaf9ff;
+      border-radius: 12px;
+      padding: 1.05rem;
+      text-align: left;
+      box-shadow: 0 8px 20px rgba(11,89,121,0.03);
+      transition: transform 200ms ease;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .specialty-card:hover { transform: translateY(-4px); }
+
+    .spec-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 10px;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+      margin-bottom: 0.2rem;
+    }
+
+    .specialty-card h4 { margin: 0; font-size: 1rem; }
+    .specialty-card p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+    .specialty-card ul { margin: 0; padding-left: 1rem; color: #1f2937; font-size: 0.95rem; }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 8px;
+      background: #fff;
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,0.06);
+      font-size: 0.85rem;
+      color: #0f1724;
+    }
+
+    /* ===========================
+       CTA (Need Medical Attention) section
+       =========================== */
+    .cta-section {
+      margin: 2rem auto 3rem auto;
+      max-width: var(--max-width);
+      padding: 1rem;
+    }
+
+    .cta-box {
+      background: linear-gradient(180deg, #e9fbff, #f6fdff);
+      border-radius: 14px;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.8rem;
+      box-shadow: var(--shadow);
+    }
+
+    .cta-box h3 { margin: 0; color: #07203a; }
+    .cta-box p { margin: 0; color: var(--muted); }
+
+    .cta-actions { display: flex; gap: 0.6rem; margin-top: 0.5rem; flex-wrap: wrap; }
+
+    .btn-secondary {
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.06);
+      padding: 0.6rem 0.9rem;
+      border-radius: 10px;
+      cursor: pointer;
+      color: #0f1724;
+      font-weight: 600;
+    }
+
+    /* ===========================
+       Responsive tweaks for larger and smaller devices
+       =========================== */
+    @media (min-width: 1024px) {
+      .intro h1 { font-size: 2.25rem; }
+      .service-card .media { height: 220px; }
+      .specialties { grid-template-columns: repeat(5, 1fr); } /* more columns on large screens */
+    }
+
+    @media (max-width: 420px) {
+      :root { --container-padding: 0.75rem; }
+      .intro h1 { font-size: 1.45rem; }
+      .service-card .media { height: 150px; }
+    }
+
+    /* small utility for screen-reader only text */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+  </style>
+</head>
+<body>
+  <!--
+    BODY START
+    We'll now build the page structure with inline comments that explain each line.
+  -->
+
+  <!-- ===== Header / Navbar ===== -->
+  <header class="header" role="banner">
+    <!-- brand: mark + name -->
+    <div class="site-brand" aria-label="HealthBridge">
+      <!-- small square with initials (visual brand mark) -->
+      <div class="brand-mark" aria-hidden="true">HB</div>
+      <!-- actual brand text -->
+      <div class="brand-name">HealthBridge</div>
+    </div>
+
+    <!--
+      Mobile nav toggle:
+      - button toggles the .show class on the navigation list below
+      - aria-expanded is updated by JavaScript for accessibility
+    -->
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mainNav" aria-label="Toggle navigation">
+      <!-- visually simple hamburger (kept as text for accessibility) -->
+      ☰
+    </button>
+
+    <!-- main navigation (links) -->
+    <nav id="mainNav" role="navigation" aria-label="Main navigation">
+      <!-- nav-list is hidden on mobile until .show is applied -->
+      <ul class="nav-list" id="navList">
+        <li class="nav-item"><a href="#">Home</a></li>
+        <li class="nav-item"><a href="#">About</a></li>
+        <li class="nav-item"><a href="#">Services</a></li>
+        <li class="nav-item"><a href="#">Portfolio</a></li>
+        <li class="nav-item"><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <!-- end header -->
+
+  <!-- ===== Main content ===== -->
+  <main>
+    <!--
+      Intro / Hero section:
+      - container-wide centers content and limits width
+      - kicker is a small label above the main heading
+    -->
+    <section class="intro container-wide" aria-labelledby="introHeading">
+      <!-- short label above the heading -->
+      <span class="kicker">Why Choose HealthBridge</span>
+
+      <!-- main heading (id used for aria-labelledby) -->
+      <h1 id="introHeading">Nigeria's Premier Healthcare Destination</h1>
+
+      <!-- small descriptive paragraph -->
+      <p class="lead">
+        Experience the difference with our commitment to excellence, innovation,
+        and compassionate care that puts patients first.
+      </p>
+
+      <!--
+        Stats grid: each .stat is a small card with icon, big number, and label
+        Inline SVG icons are used to match the accent color:
+        - svg fill/stroke is set to currentColor where appropriate, so CSS color rules apply.
+      -->
+      <div class="stats" aria-hidden="false">
+
+        <!-- STAT 1: Patients Treated Annually -->
+        <div class="stat" role="group" aria-label="Patients Treated Annually">
+          <div class="stat-icon" aria-hidden="true">
+            <!-- Heart SVG icon (filled) — color matches container text color -->
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M12 21s-7-4.35-9-7.2C1.85 11.73 3.3 7.5 7.5 7.5c1.95 0 3.1 1.4 4.5 2.88C13.4 8.9 14.55 7.5 16.5 7.5 20.7 7.5 22.15 11.73 21 13.8 19 16.65 12 21 12 21z" fill="currentColor"></path>
+            </svg>
+          </div>
+          <!-- number -->
+          <h3>15,000+</h3>
+          <!-- label -->
+          <p>Patients Treated Annually</p>
+        </div>
+
+        <!-- STAT 2: Patient Satisfaction -->
+        <div class="stat" role="group" aria-label="Patient satisfaction rate">
+          <div class="stat-icon" aria-hidden="true">
+            <!-- Star SVG -->
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" fill="currentColor"></path>
+            </svg>
+          </div>
+          <h3>99.8%</h3>
+          <p>Patient Satisfaction Rate</p>
+        </div>
+
+        <!-- STAT 3: Emergency Response -->
+        <div class="stat" role="group" aria-label="Emergency response time">
+          <div class="stat-icon" aria-hidden="true">
+            <!-- Clock/Time SVG -->
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M12 1a11 11 0 100 22 11 11 0 000-22zm1 12.41V7h-2v6l5 3 1-1.66-4-2.93z" fill="currentColor"></path>
+            </svg>
+          </div>
+          <h3>24/7</h3>
+          <p>Emergency Response Time</p>
+        </div>
+
+        <!-- STAT 4: Medical Specialists -->
+        <div class="stat" role="group" aria-label="Medical specialists">
+          <div class="stat-icon" aria-hidden="true">
+            <!-- Users / people SVG -->
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zM8 11c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5C15 14.17 10.33 13 8 13zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.96 1.97 3.45V19h6v-2.5C22 14.17 17.33 13 16 13z" fill="currentColor"></path>
+            </svg>
+          </div>
+          <h3>50+</h3>
+          <p>Medical Specialists</p>
+        </div>
+
+      </div><!-- end stats -->
+    </section><!-- end intro -->
+
+    <!-- ===== Services Section ===== -->
+    <section class="services-section">
+      <!-- inner wrapper to center and constrain width -->
+      <div class="services-inner">
+        <div class="section-title">
+          <h2>Comprehensive Healthcare Services</h2>
+          <div class="sub">From routine check-ups to complex procedures, HealthBridge Medical Center offers a full spectrum of medical services with Nigerian healthcare excellence.</div>
+        </div>
+
+        <!--
+          service-cards:
+          - each card is an article (semantic)
+          - media (image) sits on top and content under it
+        -->
+        <div class="service-cards" aria-label="Primary services">
+
+          <!-- CARD 1: Cardiology -->
+          <article class="service-card" aria-labelledby="srv1-title">
+            <!-- media area with image (position:relative so tag overlays) -->
+            <div class="media">
+              <!-- small overlay tag on top-left of the image -->
+              <div class="tag" aria-hidden="true">24/7 Available</div>
+
+              <!-- image: replace src with a proper path; alt is descriptive -->
+              <img src="images/closeup-doctor-using-syringe-preparing-medicine-child-during-coronavirus-pandemic-870x580.jpg"
+                   alt="Medical professional preparing a syringe" />
+            </div>
+
+            <!-- content area -->
+            <div class="content">
+              <!-- heading with inline SVG heart icon that inherits color -->
+              <h3 id="srv1-title">
+                <!-- small inline SVG icon (styled by CSS color if needed) -->
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex-shrink:0" aria-hidden="true">
+                  <path d="M12 21s-7-4.35-9-7.2C1.85 11.73 3.3 7.5 7.5 7.5c1.95 0 3.1 1.4 4.5 2.88C13.4 8.9 14.55 7.5 16.5 7.5 20.7 7.5 22.15 11.73 21 13.8 19 16.65 12 21 12 21z" fill="currentColor"></path>
+                </svg>
+                Cardiology
+              </h3>
+
+              <!-- list of features -->
+              <ul>
+                <li><span class="bullet">✓</span> ECG &amp; Stress Testing</li>
+                <li><span class="bullet">✓</span> Cardiac Catheterization</li>
+                <li><span class="bullet">✓</span> Pacemaker Implantation</li>
+              </ul>
+
+              <!-- call to action (link) -->
+              <div class="cta">
+                <a class="btn-link" href="#">Learn More →</a>
+              </div>
+            </div><!-- end content -->
+          </article><!-- end service-card -->
+
+          <!-- CARD 2: Pediatrics -->
+          <article class="service-card" aria-labelledby="srv2-title">
+            <div class="media">
+              <img src="images/close-up-african-american-hand-holding-stethoscope-870x580.jpg"
+                   alt="Pediatrician holding a stethoscope" />
+            </div>
+
+            <div class="content">
+              <h3 id="srv2-title">
+                <!-- baby icon (inline svg) -->
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M12 2C9.79 2 8 3.79 8 6c0 1.64.99 3.03 2.4 3.67C10.15 11.12 8.45 12 7 12v2h10v-2c-1.45 0-3.15-.88-3.4-2.33C15.01 9.03 16 7.64 16 6c0-2.21-1.79-4-4-4z" fill="currentColor"></path>
+                </svg>
+                Pediatrics
+              </h3>
+
+              <ul>
+                <li><span class="bullet">✓</span> Vaccination Programs</li>
+                <li><span class="bullet">✓</span> Child Development</li>
+                <li><span class="bullet">✓</span> Pediatric Surgery</li>
+              </ul>
+
+              <div class="cta">
+                <a class="btn-link" href="#">Learn More →</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- CARD 3: General Surgery -->
+          <article class="service-card" aria-labelledby="srv3-title">
+            <div class="media">
+              <div class="tag" aria-hidden="true">24/7 Available</div>
+              <img src="images/surgeons-performing-operation-operation-room-768x512.jpg"
+                   alt="Surgeons performing an operation" />
+            </div>
+
+            <div class="content">
+              <h3 id="srv3-title">
+                <!-- stethoscope icon -->
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M20 6v6a4 4 0 01-4 4 4 4 0 01-4-4V6" stroke="currentColor" stroke-width="1.3" fill="none"></path>
+                  <path d="M8 14h.01" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"></path>
+                </svg>
+                General Surgery
+              </h3>
+
+              <ul>
+                <li><span class="bullet">✓</span> Laparoscopic Surgery</li>
+                <li><span class="bullet">✓</span> Emergency Surgery</li>
+                <li><span class="bullet">✓</span> Day Surgery</li>
+              </ul>
+
+              <div class="cta">
+                <a class="btn-link" href="#">Learn More →</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Specialties: small cards grid ===== -->
+    <section class="specialties" aria-label="Specialties">
+      <!-- NEUROLOGY -->
+      <div class="specialty-card">
+        <div class="spec-icon" aria-hidden="true">
+          <!-- brain icon SVG -->
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 2c-1.1 0-2 .9-2 2v1H8v3H6v3h2v4h4v-6h2v-2h1V6h-2V4c0-1.1-.9-2-2-2z" fill="currentColor"></path>
+          </svg>
+        </div>
+        <h4>Neurology</h4>
+        <p>Comprehensive brain and nervous system care</p>
+        <ul>
+          <li>Stroke Treatment</li>
+          <li>Epilepsy Management</li>
+          <li>Neurological Testing</li>
+        </ul>
+        <div><span class="badge">🛡️ Emergency Available</span></div>
+      </div>
+
+      <!-- OPHTHALMOLOGY -->
+      <div class="specialty-card">
+        <div class="spec-icon" aria-hidden="true">
+          <!-- eye icon SVG -->
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 5c-5 0-9 4-9 7s4 7 9 7 9-4 9-7-4-7-9-7zm0 10a3 3 0 110-6 3 3 0 010 6z" fill="currentColor"></path>
+          </svg>
+        </div>
+        <h4>Ophthalmology</h4>
+        <p>Complete eye care and vision services</p>
+        <ul>
+          <li>Cataract Surgery</li>
+          <li>Retinal Care</li>
+          <li>Glaucoma Treatment</li>
+        </ul>
+      </div>
+
+      <!-- ORTHOPEDICS -->
+      <div class="specialty-card">
+        <div class="spec-icon" aria-hidden="true">
+          <!-- bone icon SVG (simple) -->
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4 7a2 2 0 114 0 2 2 0 11-4 0zm12 10a2 2 0 114 0 2 2 0 11-4 0zM8 9l8 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </div>
+        <h4>Orthopedics</h4>
+        <p>Bone, joint, and musculoskeletal treatment</p>
+        <ul>
+          <li>Joint Replacement</li>
+          <li>Sports Medicine</li>
+          <li>Fracture Care</li>
+        </ul>
+        <div><span class="badge">🛡️ Emergency Available</span></div>
+      </div>
+
+      <!-- EMERGENCY MEDICINE -->
+      <div class="specialty-card">
+        <div class="spec-icon" aria-hidden="true">
+          <!-- ambulance icon SVG -->
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M3 13h13v-6H3v6zm0 0v6h2a1 1 0 002 0h6a1 1 0 002 0h2v-6H3z" fill="currentColor"></path>
+          </svg>
+        </div>
+        <h4>Emergency Medicine</h4>
+        <p>24/7 emergency and trauma care services</p>
+        <ul>
+          <li>Trauma Center</li>
+          <li>Critical Care</li>
+          <li>Ambulance Services</li>
+        </ul>
+        <div><span class="badge">🛡️ Emergency Available</span></div>
+      </div>
+
+      <!-- LABORATORY -->
+      <div class="specialty-card">
+        <div class="spec-icon" aria-hidden="true">
+          <!-- microscope icon SVG -->
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 3h12v2H6zM10 21h4v-2h-4zM9 7h6v2H9zM8 10v7h8v-7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </div>
+        <h4>Laboratory Services</h4>
+        <p>Advanced diagnostic testing and pathology</p>
+        <ul>
+          <li>Blood Tests</li>
+          <li>Microbiology</li>
+          <li>Molecular Diagnostics</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== CTA Section ===== -->
+    <section class="cta-section container-wide" aria-labelledby="ctaHeading">
+      <div class="cta-box" role="region" aria-labelledby="ctaHeading">
+        <h3 id="ctaHeading">Need Medical Attention?</h3>
+        <p>Our team of experienced doctors and specialists are ready to provide you with the best medical care in Nigeria.</p>
+        <div class="cta-actions">
+          <!-- Book appointment primary action -->
+          <button class="btn-primary" type="button">Book Appointment</button>
+          <!-- Emergency contact secondary action -->
+          <button class="btn-secondary" type="button">Emergency Contact</button>
+        </div>
+      </div>
+    </section>
+
+  </main><!-- end main -->
+
+  <!-- ===== Small JS: nav toggle + behavior ===== -->
+  <script>
+    (function() {
+      // get references to the toggle button and the nav list
+      const toggle = document.getElementById('navToggle');
+      const navList = document.getElementById('navList');
+
+      // A: Toggle the mobile nav when the hamburger is clicked
+      toggle.addEventListener('click', function() {
+        // toggle the 'show' class which switches the nav's display
+        const isOpen = navList.classList.toggle('show');
+        // update accessibility attribute
+        toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+
+      // B: Close the mobile nav automatically if the window is resized to desktop
+      window.addEventListener('resize', () => {
+        if (window.innerWidth >= 768) {
+          if (navList.classList.contains('show')) {
+            navList.classList.remove('show');
+            toggle.setAttribute('aria-expanded', 'false');
+          }
+        }
+      });
+
+      // C: Close the menu when clicking outside the header on small screens
+      document.addEventListener('click', (e) => {
+        if (window.innerWidth < 768) {
+          const target = e.target;
+          // if click is outside the header and menu is open, close it
+          if (!target.closest('.header') && navList.classList.contains('show')) {
+            navList.classList.remove('show');
+            toggle.setAttribute('aria-expanded', 'false');
+          }
+        }
+      });
+    })();
+  </script>
+
+  <!--
+    Notes for you:
+    - To change the accent color, update --accent and --accent-600 in :root.
+    - To use Flaticon PNGs instead of the inline SVGs: replace the inline SVG tag with:
+        <img src="https://cdn-icons-png.flaticon.com/512/ID/ICON.png" alt="...">
+      but inline SVGs let you recolor via CSS easily (they inherit color).
+    - Image files (src="images/...") should exist relative to this HTML file or be updated to absolute URLs.
+    - If you want every tiny line explained further, tell me which area (HTML, CSS, or JS) and I'll expand that section even more.
+  -->
+</body>
+</html>
