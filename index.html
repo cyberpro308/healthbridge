@@ -10,10 +10,10 @@
        Root variables - change colors/sizes here to theme the whole page
        =========================== */
     :root{
-      --bg: #f6fbff;                /* page background color (soft white/blue) */
+      --bg: white;                /* page background color (soft white/blue) */
       --card-bg: #ffffff;           /* card backgrounds */
       --muted: #6b7280;             /* muted paragraph text */
-      --accent: #5bc0eb;            /* sky-blue accent used across the site */
+      --accent: #1a95ca;            /* sky-blue accent used across the site */
       --accent-600: #2b9bd3;        /* slightly darker accent for hover states */
       --soft: #e9f8ff;              /* subtle tint used for icon backgrounds */
       --radius: 12px;               /* border radius for cards & inputs */
@@ -204,7 +204,7 @@
     }
 
     .stat {
-      background: var(--card-bg);
+      background-color: #e4f3fa;
       border-radius: 10px;
       padding: 0.85rem;
       box-shadow: var(--shadow);
@@ -265,7 +265,7 @@
 
     /* Each service card */
     .service-card {
-      background: var(--card-bg);
+      background-color: #e4f3fa;
       border-radius: var(--radius);
       overflow: hidden;
       box-shadow: var(--shadow);
@@ -300,6 +300,7 @@
       padding: 6px 9px;
       background: var(--accent-600);
       color: white;
+      background-color: rgb(224, 15, 15);
       border-radius: 8px;
       font-size: 0.8rem;
       box-shadow: 0 6px 20px rgba(43,155,211,0.12);
@@ -319,7 +320,7 @@
       display: flex;
       align-items: center;
       gap: 0.6rem;
-      color: #07203a;
+      color: black;
     }
 
     .service-card ul {
@@ -394,7 +395,7 @@
     }
 
     .specialty-card {
-      background: #eaf9ff;
+      background: #e4f3fa;
       border-radius: 12px;
       padding: 1.05rem;
       text-align: left;
@@ -410,7 +411,7 @@
       width: 56px;
       height: 56px;
       border-radius: 10px;
-      background: #ffffff;
+      background: #e4f3fa;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -426,7 +427,6 @@
     .badge {
       display: inline-block;
       padding: 6px 8px;
-      background: #fff;
       border-radius: 999px;
       border: 1px solid rgba(0,0,0,0.06);
       font-size: 0.85rem;
@@ -443,7 +443,7 @@
     }
 
     .cta-box {
-      background: linear-gradient(180deg, #e9fbff, #f6fdff);
+      background-color: #e4f3fa;
       border-radius: 14px;
       padding: 1.25rem;
       display: flex;
@@ -460,7 +460,7 @@
     .cta-actions { display: flex; gap: 0.6rem; margin-top: 0.5rem; flex-wrap: wrap; }
 
     .btn-secondary {
-      background: #fff;
+      background-color: #a5def8;
       border: 1px solid rgba(0,0,0,0.06);
       padding: 0.6rem 0.9rem;
       border-radius: 10px;
@@ -497,6 +497,96 @@
       border: 0;
     }
 
+
+    footer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 1px 5%;
+      background-color: #1a95ca;
+      color: #fff;
+    }
+
+    .footer-section {
+      flex: 1 1 250px;
+      margin: 20px;
+    }
+
+    .footer-section h3 {
+      font-size: 18px;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-section ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-section ul li a {
+      color: #fff;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .footer-section ul li a:hover {
+      text-decoration: underline;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .logo span {
+      display: inline-block;
+      background: #006666;
+      color: #fff;
+      font-weight: bold;
+      font-size: 22px;
+      width: 40px;
+      height: 40px;
+      text-align: center;
+      line-height: 40px;
+      border-radius: 8px;
+      margin-right: 10px;
+    }
+
+    .contact-info p {
+      margin: 6px 0;
+    }
+
+    .newsletter input[type="email"] {
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      width: 65%;
+      margin-right: 10px;
+    }
+
+    .newsletter button {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      background: #006666;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .newsletter button:hover {
+      background: #004c4c;
+    }
+
+      .newsletter input[type="email"] {
+        width: 100%;
+        margin-bottom: 10px;
+      }
   </style>
 </head>
 <body>
@@ -839,7 +929,64 @@
       </div>
     </section>
 
+
   </main><!-- end main -->
+
+  <footer>
+    <div class="footer-section">
+      <div class="logo">
+        <span>H</span>
+        <h2>HealthBridge</h2>
+      </div>
+      <p>Leading healthcare provider in Nigeria, committed to delivering world-class medical services with compassion and excellence.</p>
+      <div class="contact-info">
+        <p>📞 Emergency: +234 (0) 1-234-5678 (24/7 Available)</p>
+        <p>✉️ info@healthbridge.com.ng (We respond within 24 hours)</p>
+        <p>📍 123 Ahmadu Bello Way, Victoria Island, Lagos, Nigeria</p>
+      </div>
+    </div>
+
+    <div class="footer-section">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Our Services</a></li>
+        <li><a href="#">Doctors</a></li>
+        <li><a href="#">Emergency Care</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section">
+      <h3>Medical Services</h3>
+      <ul>
+        <li><a href="#">Cardiology</a></li>
+        <li><a href="#">Pediatrics</a></li>
+        <li><a href="#">General Surgery</a></li>
+        <li><a href="#">Neurology</a></li>
+        <li><a href="#">Orthopedics</a></li>
+        <li><a href="#">Emergency Medicine</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section">
+      <h3>Patient Resources</h3>
+      <ul>
+        <li><a href="#">Patient Portal</a></li>
+        <li><a href="#">Insurance Information</a></li>
+        <li><a href="#">Appointment Booking</a></li>
+        <li><a href="#">Telemedicine</a></li>
+        <li><a href="#">Health Tips</a></li>
+        <li><a href="#">Billing & Payment</a></li>
+      </ul>
+      <div class="newsletter">
+        <h3>Health Newsletter</h3>
+        <p>Get health tips and medical updates delivered to your inbox.</p>
+        <input type="email" placeholder="Your email">
+        <button>Subscribe</button>
+      </div>
+    </div>
+  </footer>
 
   <!-- ===== Small JS: nav toggle + behavior ===== -->
   <script>
