@@ -230,6 +230,12 @@
       margin: 0;
       color: var(--accent-600);
       font-size: 1.25rem;
+      /* small transition for color change when done */
+      transition: color 220ms ease;
+    }
+
+    .stat.done h3 {
+      color: var(--accent-600);
     }
 
     .stat p { margin: 0; color: var(--muted); font-size: 0.95rem; }
@@ -469,20 +475,26 @@
       font-weight: 600;
     }
 
-    /* ===========================
-       Responsive tweaks for larger and smaller devices
-       =========================== */
-    @media (min-width: 1024px) {
-      .intro h1 { font-size: 2.25rem; }
-      .service-card .media { height: 220px; }
-      .specialties { grid-template-columns: repeat(5, 1fr); } /* more columns on large screens */
+    /* Fix: Make toggle stay at the right on mobile */
+@media (max-width: 768px) {
+    header {
+        position: relative;
     }
 
-    @media (max-width: 420px) {
-      :root { --container-padding: 0.75rem; }
-      .intro h1 { font-size: 1.45rem; }
-      .service-card .media { height: 150px; }
+    nav {
+        position: absolute;
+        right: 0;
+        top: 0px;
+        width: 100%;
+        background: white;
     }
+
+    .toggle-btn {
+        margin-left: auto;
+        display: block;
+    }
+}
+
 
     /* small utility for screen-reader only text */
     .sr-only {
@@ -603,6 +615,7 @@
       <div class="brand-mark" aria-hidden="true">HB</div>
       <!-- actual brand text -->
       <div class="brand-name">HealthBridge</div>
+      
     </div>
 
     <!--
@@ -1027,14 +1040,119 @@
     })();
   </script>
 
+  <!-- ========== ANIMATED STATS (ADDED) ========== -->
+  <script>
+    // Animate only the .stat h3 numbers, leaving everything else untouched.
+    document.addEventListener('DOMContentLoaded', () => {
+      const statHeads = document.querySelectorAll('.stat h3');
+
+      // helper: format integer with commas
+      const formatInt = (n) => {
+        return n.toLocaleString();
+      };
+
+      // helper: format float with given decimals, but keep trailing zeros similar to original
+      const formatFloat = (n, decimals) => {
+        return n.toFixed(decimals);
+      };
+
+      // parse initial text to detect numeric value and suffix
+      const parseStatText = (text) => {
+        const t = text.trim();
+        // if contains slash (like 24/7) -> treat as non-animatable
+        if (t.includes('/')) return null;
+
+        // match a leading number with optional commas and decimals, capture rest as suffix
+        const m = t.match(/^([\d,]+(?:\.\d+)?)(.*)$/);
+        if (!m) return null;
+
+        const numStr = m[1].replace(/,/g, '');
+        const suffix = (m[2] || '').trim();
+        const isFloat = numStr.indexOf('.') !== -1;
+        const value = isFloat ? parseFloat(numStr) : parseInt(numStr, 10);
+        const decimals = isFloat ? (numStr.split('.')[1] || '').length : 0;
+        return { value, suffix, decimals, raw: m[1] };
+      };
+
+      // animate numeric value into element
+      const animateValue = (el, target, decimals, suffix) => {
+        const duration = 1400; // ms
+        const start = 0;
+        const startTime = performance.now();
+
+        function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+
+        function frame(now) {
+          const elapsed = now - startTime;
+          let progress = Math.min(elapsed / duration, 1);
+          progress = easeOutCubic(progress);
+          let current = start + (target - start) * progress;
+
+          // format
+          if (decimals > 0) {
+            current = parseFloat(current.toFixed(decimals));
+            el.textContent = formatFloat(current, decimals) + suffix;
+          } else {
+            el.textContent = formatInt(Math.round(current)) + suffix;
+          }
+
+          if (elapsed < duration) {
+            requestAnimationFrame(frame);
+          } else {
+            // ensure exact final value
+            if (decimals > 0) {
+              el.textContent = formatFloat(target, decimals) + suffix;
+            } else {
+              el.textContent = formatInt(Math.round(target)) + suffix;
+            }
+            // mark done visually (optional)
+            el.closest('.stat')?.classList.add('done');
+          }
+        }
+
+        requestAnimationFrame(frame);
+      };
+
+      // IntersectionObserver to trigger when in view
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const h3 = entry.target;
+          if (h3.dataset.animated === 'true') return; // don't animate twice
+
+          const parsed = parseStatText(h3.textContent || '');
+          if (!parsed) {
+            // nothing to animate (e.g., "24/7"), mark as done and skip
+            h3.closest('.stat')?.classList.add('done');
+            h3.dataset.animated = 'true';
+            return;
+          }
+
+          // set starting display to 0 (preserve suffix/display while animating)
+          if (parsed.decimals > 0) {
+            h3.textContent = (0).toFixed(parsed.decimals) + (parsed.suffix ? parsed.suffix : '');
+          } else {
+            h3.textContent = '0' + (parsed.suffix ? parsed.suffix : '');
+          }
+
+          // animate
+          animateValue(h3, parsed.value, parsed.decimals, parsed.suffix ? parsed.suffix : '');
+
+          h3.dataset.animated = 'true';
+        });
+      }, { threshold: 0.35 });
+
+      // observe each stat h3
+      statHeads.forEach(h3 => observer.observe(h3));
+    });
+  </script>
+
   <!--
     Notes for you:
-    - To change the accent color, update --accent and --accent-600 in :root.
-    - To use Flaticon PNGs instead of the inline SVGs: replace the inline SVG tag with:
-        <img src="https://cdn-icons-png.flaticon.com/512/ID/ICON.png" alt="...">
-      but inline SVGs let you recolor via CSS easily (they inherit color).
-    - Image files (src="images/...") should exist relative to this HTML file or be updated to absolute URLs.
-    - If you want every tiny line explained further, tell me which area (HTML, CSS, or JS) and I'll expand that section even more.
+    - The animation auto-detects numbers in .stat h3 (commas, decimals, trailing + or %).
+    - Items like "24/7" are left as-is (no animation).
+    - If you want different durations, decimals handling, or to force a data-target value,
+      I can add `data-target` attributes instead — but I left the HTML unchanged as requested.
   -->
 </body>
 </html>
