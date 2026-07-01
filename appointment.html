@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Book an Appointment — HealthBridge Medical Center</title>
+  <meta name="description" content="Book your appointment with a HealthBridge specialist online. Choose your department, doctor, date and time in a few simple steps." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <div class="emergency-strip">
+    🚑 24/7 Emergency Line: <a href="tel:+23412345678">+234 (0) 1-234-5678</a> — We're always here for you
+  </div>
+
+  <header class="header">
+    <div class="container nav">
+      <a href="index.html" class="site-brand">
+        <span class="brand-mark">HB</span>
+        <span class="brand-name">Health<span>Bridge</span></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navPanel" aria-label="Toggle navigation">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+      <div class="nav-panel" id="navPanel">
+        <ul class="nav-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="doctors.html">Doctors</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="nav-cta">
+          <a href="tel:+23412345678" class="btn btn-secondary">Call Now</a>
+          <a href="appointment.html" class="btn btn-primary active">Book Appointment</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-header">
+      <div class="container">
+        <nav class="breadcrumb"><a href="index.html">Home</a> <span>/</span> <span>Book Appointment</span></nav>
+        <h1>Book Your Appointment</h1>
+        <p>Schedule a visit with one of our specialists in just a few steps. It's quick, secure, and confirmed within 24 hours.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="split" style="align-items:start;">
+
+          <!-- Booking form -->
+          <div class="reveal">
+            <form class="form-card" data-validate>
+              <div class="form-alert" role="status">✓ Appointment request received! Our team will confirm your slot by phone or email within 24 hours.</div>
+
+              <h2 style="margin-top:0;font-size:1.4rem;">Patient Details</h2>
+              <div class="form-grid" style="margin-bottom:1.5rem;">
+                <div class="field">
+                  <label for="apptName">Full Name <span class="req">*</span></label>
+                  <input id="apptName" name="name" type="text" required placeholder="Jane Doe" />
+                  <span class="error-msg">Please enter your name.</span>
+                </div>
+                <div class="field">
+                  <label for="apptEmail">Email <span class="req">*</span></label>
+                  <input id="apptEmail" name="email" type="email" required placeholder="jane@email.com" />
+                  <span class="error-msg">Please enter a valid email.</span>
+                </div>
+                <div class="field">
+                  <label for="apptPhone">Phone <span class="req">*</span></label>
+                  <input id="apptPhone" name="phone" type="tel" required placeholder="+234 801 234 5678" />
+                  <span class="error-msg">Please enter a valid phone number.</span>
+                </div>
+                <div class="field">
+                  <label for="apptDob">Date of Birth</label>
+                  <input id="apptDob" name="dob" type="date" />
+                </div>
+              </div>
+
+              <h2 style="font-size:1.4rem;">Appointment Details</h2>
+              <div class="form-grid">
+                <div class="field">
+                  <label for="apptDept">Department <span class="req">*</span></label>
+                  <select id="apptDept" name="department" required>
+                    <option value="">Select a department</option>
+                    <option value="Cardiology">Cardiology</option>
+                    <option value="Pediatrics">Pediatrics</option>
+                    <option value="General Surgery">General Surgery</option>
+                    <option value="Neurology">Neurology</option>
+                    <option value="Orthopedics">Orthopedics</option>
+                    <option value="Ophthalmology">Ophthalmology</option>
+                    <option value="Emergency Medicine">Emergency Medicine</option>
+                    <option value="Maternity">Maternity &amp; Obstetrics</option>
+                    <option value="Laboratory">Laboratory Services</option>
+                  </select>
+                  <span class="error-msg">Please choose a department.</span>
+                </div>
+                <div class="field">
+                  <label for="apptDoctor">Preferred Doctor</label>
+                  <select id="apptDoctor" name="doctor">
+                    <option value="">No preference</option>
+                    <option>Dr. Chidi Adeyemi (Cardiology)</option>
+                    <option>Dr. Amara Obi (Pediatrics)</option>
+                    <option>Dr. Segun Bello (Surgery)</option>
+                    <option>Dr. Fatima Nwosu (Neurology)</option>
+                    <option>Dr. Kelechi Okafor (Orthopedics)</option>
+                    <option>Dr. Rukayat Ahmed (Ophthalmology)</option>
+                    <option>Dr. Emeka Uche (Emergency)</option>
+                    <option>Dr. Blessing Aliyu (Maternity)</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="apptDate">Preferred Date <span class="req">*</span></label>
+                  <input id="apptDate" name="date" type="date" required />
+                  <span class="error-msg">Please choose a date.</span>
+                </div>
+                <div class="field">
+                  <label for="apptTime">Preferred Time <span class="req">*</span></label>
+                  <select id="apptTime" name="time" required>
+                    <option value="">Select a time</option>
+                    <option>08:00 – 09:00</option>
+                    <option>09:00 – 10:00</option>
+                    <option>10:00 – 11:00</option>
+                    <option>11:00 – 12:00</option>
+                    <option>12:00 – 13:00</option>
+                    <option>14:00 – 15:00</option>
+                    <option>15:00 – 16:00</option>
+                    <option>16:00 – 17:00</option>
+                  </select>
+                  <span class="error-msg">Please choose a time.</span>
+                </div>
+                <div class="field full">
+                  <label for="apptType">Visit Type</label>
+                  <select id="apptType" name="visitType">
+                    <option>In-person consultation</option>
+                    <option>Telemedicine (video call)</option>
+                    <option>Follow-up visit</option>
+                  </select>
+                </div>
+                <div class="field full">
+                  <label for="apptNotes">Reason for Visit / Notes</label>
+                  <textarea id="apptNotes" name="notes" placeholder="Briefly describe your symptoms or reason for the visit..."></textarea>
+                </div>
+                <div class="field full">
+                  <button class="btn btn-primary btn-lg btn-block" type="submit">Request Appointment</button>
+                  <p class="form-note">For medical emergencies, do not use this form — call <a href="tel:+23412345678">+234 (0) 1-234-5678</a> immediately.</p>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <!-- Sidebar -->
+          <div class="reveal">
+            <div class="info-card" style="flex-direction:column;background:linear-gradient(135deg,var(--accent),var(--accent-700));color:#fff;border:0;">
+              <h4 style="color:#fff;margin:0 0 0.6rem;">Why Book Online?</h4>
+              <ul class="check-list" style="margin:0;">
+                <li><span class="bullet" style="background:rgba(255,255,255,.25);color:#fff;">✓</span> Confirmed within 24 hours</li>
+                <li><span class="bullet" style="background:rgba(255,255,255,.25);color:#fff;">✓</span> Choose your preferred specialist</li>
+                <li><span class="bullet" style="background:rgba(255,255,255,.25);color:#fff;">✓</span> In-person or telemedicine options</li>
+                <li><span class="bullet" style="background:rgba(255,255,255,.25);color:#fff;">✓</span> Secure &amp; confidential</li>
+              </ul>
+            </div>
+
+            <div class="info-card" style="flex-direction:column;margin-top:1.5rem;">
+              <h4 style="margin:0 0 0.5rem;">🕒 Clinic Hours</h4>
+              <p style="width:100%;">Mon – Fri: 8:00 AM – 8:00 PM<br>Saturday: 9:00 AM – 5:00 PM<br>Sunday: 10:00 AM – 4:00 PM</p>
+              <p style="width:100%;margin-top:0.6rem;"><strong style="color:var(--danger);">Emergency: Open 24/7</strong></p>
+            </div>
+
+            <div class="info-card" style="flex-direction:column;margin-top:1.5rem;">
+              <h4 style="margin:0 0 0.5rem;">📞 Prefer to Call?</h4>
+              <p style="width:100%;">Our booking team is available during clinic hours.</p>
+              <a class="btn btn-primary btn-block" href="tel:+23412345679" style="margin-top:0.8rem;">Call +234 (0) 1-234-5679</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="logo"><span class="brand-mark">HB</span><strong>HealthBridge</strong></div>
+          <p>Leading healthcare provider in Nigeria, committed to delivering world-class medical services with compassion and excellence.</p>
+          <div class="contact-info">
+            <p>📞 <span>Emergency: +234 (0) 1-234-5678 (24/7 Available)</span></p>
+            <p>✉️ <span>info@healthbridge.com.ng</span></p>
+            <p>📍 <span>123 Ahmadu Bello Way, Victoria Island, Lagos, Nigeria</span></p>
+          </div>
+        </div>
+        <div>
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html">Our Services</a></li>
+            <li><a href="doctors.html">Doctors</a></li>
+            <li><a href="services.html#emergency">Emergency Care</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Medical Services</h3>
+          <ul>
+            <li><a href="services.html#cardiology">Cardiology</a></li>
+            <li><a href="services.html#pediatrics">Pediatrics</a></li>
+            <li><a href="services.html#surgery">General Surgery</a></li>
+            <li><a href="services.html#neurology">Neurology</a></li>
+            <li><a href="services.html#orthopedics">Orthopedics</a></li>
+            <li><a href="services.html#emergency">Emergency Medicine</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Health Newsletter</h3>
+          <p>Get health tips and medical updates delivered to your inbox.</p>
+          <form class="newsletter-form">
+            <input type="email" placeholder="Your email" aria-label="Email address" required />
+            <button class="btn btn-primary" type="submit">Subscribe</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year>2026</span> HealthBridge Medical Center. All rights reserved.</span>
+        <span><a href="#">Privacy Policy</a> · <a href="#">Terms of Service</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HealthBridge — Nigeria's Premier Healthcare Destination</title>
+  <meta name="description" content="HealthBridge Medical Center delivers world-class, compassionate healthcare in Lagos, Nigeria. Cardiology, pediatrics, surgery, emergency care and more — available 24/7." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- Emergency strip -->
+  <div class="emergency-strip">
+    🚑 24/7 Emergency Line: <a href="tel:+23412345678">+234 (0) 1-234-5678</a> — We're always here for you
+  </div>
+
+  <!-- ===== Header ===== -->
+  <header class="header">
+    <div class="container nav">
+      <a href="index.html" class="site-brand">
+        <span class="brand-mark">HB</span>
+        <span class="brand-name">Health<span>Bridge</span></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navPanel" aria-label="Toggle navigation">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+      <div class="nav-panel" id="navPanel">
+        <ul class="nav-menu">
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="doctors.html">Doctors</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="nav-cta">
+          <a href="tel:+23412345678" class="btn btn-secondary">Call Now</a>
+          <a href="appointment.html" class="btn btn-primary">Book Appointment</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===== Hero ===== -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">🏥 Trusted by 15,000+ patients yearly</span>
+          <h1>World-Class Healthcare, Close to Home</h1>
+          <p>Experience the difference with our commitment to excellence, innovation, and compassionate care that puts patients first — right here in Lagos, Nigeria.</p>
+          <div class="hero-actions">
+            <a href="appointment.html" class="btn btn-primary btn-lg">Book an Appointment</a>
+            <a href="services.html" class="btn btn-ghost btn-lg">Explore Services</a>
+          </div>
+          <div class="hero-trust">
+            <div><strong>50+</strong><span>Specialists</span></div>
+            <div><strong>24/7</strong><span>Emergency Care</span></div>
+            <div><strong>99.8%</strong><span>Satisfaction</span></div>
+          </div>
+        </div>
+
+        <!-- Quick appointment card -->
+        <div class="hero-card">
+          <h3>Request a Callback</h3>
+          <p class="muted">Leave your details and our team will reach out within the hour.</p>
+          <form data-validate>
+            <div class="form-alert" role="status">✓ Thank you! We'll call you back shortly.</div>
+            <div class="field full">
+              <label for="cbName">Full Name <span class="req">*</span></label>
+              <input id="cbName" name="name" type="text" required placeholder="Jane Doe" />
+              <span class="error-msg">Please enter your name.</span>
+            </div>
+            <div class="field full">
+              <label for="cbPhone">Phone <span class="req">*</span></label>
+              <input id="cbPhone" name="phone" type="tel" required placeholder="+234 801 234 5678" />
+              <span class="error-msg">Please enter a valid phone number.</span>
+            </div>
+            <div class="field full">
+              <label for="cbDept">Department</label>
+              <select id="cbDept" name="department">
+                <option value="">General enquiry</option>
+                <option>Cardiology</option>
+                <option>Pediatrics</option>
+                <option>General Surgery</option>
+                <option>Neurology</option>
+                <option>Emergency Medicine</option>
+              </select>
+            </div>
+            <button class="btn btn-primary btn-block" type="submit">Request Callback</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Stats ===== -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Why Choose HealthBridge</span>
+          <h2>Nigeria's Premier Healthcare Destination</h2>
+          <p>Numbers that reflect our commitment to excellence and the trust our community places in us every day.</p>
+        </div>
+        <div class="stats reveal">
+          <div class="stat">
+            <div class="stat-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-4.35-9-7.2C1.85 11.73 3.3 7.5 7.5 7.5c1.95 0 3.1 1.4 4.5 2.88C13.4 8.9 14.55 7.5 16.5 7.5 20.7 7.5 22.15 11.73 21 13.8 19 16.65 12 21 12 21z"/></svg></div>
+            <h3>15,000+</h3>
+            <p>Patients Treated Annually</p>
+          </div>
+          <div class="stat">
+            <div class="stat-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div>
+            <h3>99.8%</h3>
+            <p>Patient Satisfaction Rate</p>
+          </div>
+          <div class="stat">
+            <div class="stat-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1a11 11 0 100 22 11 11 0 000-22zm1 12.41V7h-2v6l5 3 1-1.66-4-2.93z"/></svg></div>
+            <h3>24/7</h3>
+            <p>Emergency Response Time</p>
+          </div>
+          <div class="stat">
+            <div class="stat-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zM8 11c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5C15 14.17 10.33 13 8 13zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.96 1.97 3.45V19h6v-2.5C22 14.17 17.33 13 16 13z"/></svg></div>
+            <h3>50+</h3>
+            <p>Medical Specialists</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Services preview ===== -->
+    <section class="section section--alt">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Our Services</span>
+          <h2>Comprehensive Healthcare Services</h2>
+          <p>From routine check-ups to complex procedures, HealthBridge offers a full spectrum of medical services with Nigerian healthcare excellence.</p>
+        </div>
+        <div class="card-grid reveal">
+
+          <article class="service-card">
+            <div class="media">
+              <span class="tag">24/7 Available</span>
+              <img src="images/closeup-doctor-using-syringe-preparing-medicine-child-during-coronavirus-pandemic-870x580.jpg" alt="Medical professional preparing a syringe" loading="lazy" />
+            </div>
+            <div class="content">
+              <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-4.35-9-7.2C1.85 11.73 3.3 7.5 7.5 7.5c1.95 0 3.1 1.4 4.5 2.88C13.4 8.9 14.55 7.5 16.5 7.5 20.7 7.5 22.15 11.73 21 13.8 19 16.65 12 21 12 21z"/></svg> Cardiology</h3>
+              <ul class="feature-list">
+                <li><span class="bullet">✓</span> ECG &amp; Stress Testing</li>
+                <li><span class="bullet">✓</span> Cardiac Catheterization</li>
+                <li><span class="bullet">✓</span> Pacemaker Implantation</li>
+              </ul>
+              <div class="cta"><a class="btn-link" href="services.html#cardiology">Learn More →</a></div>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div class="media">
+              <img src="images/close-up-african-american-hand-holding-stethoscope-870x580.jpg" alt="Pediatrician holding a stethoscope" loading="lazy" />
+            </div>
+            <div class="content">
+              <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C9.79 2 8 3.79 8 6c0 1.64.99 3.03 2.4 3.67C10.15 11.12 8.45 12 7 12v2h10v-2c-1.45 0-3.15-.88-3.4-2.33C15.01 9.03 16 7.64 16 6c0-2.21-1.79-4-4-4z"/></svg> Pediatrics</h3>
+              <ul class="feature-list">
+                <li><span class="bullet">✓</span> Vaccination Programs</li>
+                <li><span class="bullet">✓</span> Child Development</li>
+                <li><span class="bullet">✓</span> Pediatric Surgery</li>
+              </ul>
+              <div class="cta"><a class="btn-link" href="services.html#pediatrics">Learn More →</a></div>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div class="media">
+              <span class="tag">24/7 Available</span>
+              <img src="images/surgeons-performing-operation-operation-room-768x512.jpg" alt="Surgeons performing an operation" loading="lazy" />
+            </div>
+            <div class="content">
+              <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 6v6a4 4 0 01-4 4 4 4 0 01-4-4V6"/><path d="M8 14h.01" stroke-linecap="round"/></svg> General Surgery</h3>
+              <ul class="feature-list">
+                <li><span class="bullet">✓</span> Laparoscopic Surgery</li>
+                <li><span class="bullet">✓</span> Emergency Surgery</li>
+                <li><span class="bullet">✓</span> Day Surgery</li>
+              </ul>
+              <div class="cta"><a class="btn-link" href="services.html#surgery">Learn More →</a></div>
+            </div>
+          </article>
+
+        </div>
+        <div class="text-center mt-2 reveal">
+          <a href="services.html" class="btn btn-secondary btn-lg">View All Services</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Specialties ===== -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Specialty Departments</span>
+          <h2>Expert Care Across Disciplines</h2>
+          <p>Our multidisciplinary teams bring together experience, technology, and empathy.</p>
+        </div>
+        <div class="card-grid reveal">
+          <div class="specialty-card">
+            <div class="spec-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c-1.1 0-2 .9-2 2v1H8v3H6v3h2v4h4v-6h2v-2h1V6h-2V4c0-1.1-.9-2-2-2z"/></svg></div>
+            <h4>Neurology</h4>
+            <p>Comprehensive brain and nervous system care.</p>
+            <ul><li>Stroke Treatment</li><li>Epilepsy Management</li><li>Neurological Testing</li></ul>
+            <span class="badge badge--danger">🛡️ Emergency Available</span>
+          </div>
+          <div class="specialty-card">
+            <div class="spec-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M12 5c-5 0-9 4-9 7s4 7 9 7 9-4 9-7-4-7-9-7zm0 10a3 3 0 110-6 3 3 0 010 6z"/></svg></div>
+            <h4>Ophthalmology</h4>
+            <p>Complete eye care and vision services.</p>
+            <ul><li>Cataract Surgery</li><li>Retinal Care</li><li>Glaucoma Treatment</li></ul>
+          </div>
+          <div class="specialty-card">
+            <div class="spec-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 7a2 2 0 114 0 2 2 0 11-4 0zm12 10a2 2 0 114 0 2 2 0 11-4 0zM8 9l8 6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <h4>Orthopedics</h4>
+            <p>Bone, joint, and musculoskeletal treatment.</p>
+            <ul><li>Joint Replacement</li><li>Sports Medicine</li><li>Fracture Care</li></ul>
+            <span class="badge badge--danger">🛡️ Emergency Available</span>
+          </div>
+          <div class="specialty-card">
+            <div class="spec-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M3 13h13v-6H3v6zm0 0v6h2a1 1 0 002 0h6a1 1 0 002 0h2v-6H3z"/></svg></div>
+            <h4>Emergency Medicine</h4>
+            <p>24/7 emergency and trauma care services.</p>
+            <ul><li>Trauma Center</li><li>Critical Care</li><li>Ambulance Services</li></ul>
+            <span class="badge badge--danger">🛡️ Emergency Available</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Testimonials ===== -->
+    <section class="section section--alt">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Patient Stories</span>
+          <h2>What Our Patients Say</h2>
+          <p>Real experiences from the people and families we're privileged to care for.</p>
+        </div>
+        <div class="testimonial-grid reveal">
+          <div class="testimonial">
+            <div class="stars">★★★★★</div>
+            <p>"The cardiology team saved my father's life. From the emergency response to follow-up care, every step was handled with professionalism and genuine warmth."</p>
+            <div class="who"><span class="avatar">AO</span><div><strong>Adaeze Okonkwo</strong><span>Lagos</span></div></div>
+          </div>
+          <div class="testimonial">
+            <div class="stars">★★★★★</div>
+            <p>"Booking was effortless and the pediatric staff made my daughter feel completely at ease. This is what modern healthcare in Nigeria should look like."</p>
+            <div class="who"><span class="avatar">TB</span><div><strong>Tunde Balogun</strong><span>Ikeja</span></div></div>
+          </div>
+          <div class="testimonial">
+            <div class="stars">★★★★★</div>
+            <p>"World-class facilities without leaving the country. The surgeons were exceptional and the aftercare kept me informed at every stage."</p>
+            <div class="who"><span class="avatar">NE</span><div><strong>Ngozi Eze</strong><span>Victoria Island</span></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CTA band ===== -->
+    <section class="section">
+      <div class="container">
+        <div class="cta-band reveal">
+          <h3>Need Medical Attention?</h3>
+          <p>Our team of experienced doctors and specialists are ready to provide you with the best medical care in Nigeria.</p>
+          <div class="cta-actions">
+            <a href="appointment.html" class="btn btn-secondary btn-lg">Book Appointment</a>
+            <a href="tel:+23412345678" class="btn btn-danger btn-lg">📞 Emergency Contact</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="logo"><span class="brand-mark">HB</span><strong>HealthBridge</strong></div>
+          <p>Leading healthcare provider in Nigeria, committed to delivering world-class medical services with compassion and excellence.</p>
+          <div class="contact-info">
+            <p>📞 <span>Emergency: +234 (0) 1-234-5678 (24/7 Available)</span></p>
+            <p>✉️ <span>info@healthbridge.com.ng</span></p>
+            <p>📍 <span>123 Ahmadu Bello Way, Victoria Island, Lagos, Nigeria</span></p>
+          </div>
+        </div>
+        <div>
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html">Our Services</a></li>
+            <li><a href="doctors.html">Doctors</a></li>
+            <li><a href="services.html#emergency">Emergency Care</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Medical Services</h3>
+          <ul>
+            <li><a href="services.html#cardiology">Cardiology</a></li>
+            <li><a href="services.html#pediatrics">Pediatrics</a></li>
+            <li><a href="services.html#surgery">General Surgery</a></li>
+            <li><a href="services.html#neurology">Neurology</a></li>
+            <li><a href="services.html#orthopedics">Orthopedics</a></li>
+            <li><a href="services.html#emergency">Emergency Medicine</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Health Newsletter</h3>
+          <p>Get health tips and medical updates delivered to your inbox.</p>
+          <form class="newsletter-form">
+            <input type="email" placeholder="Your email" aria-label="Email address" required />
+            <button class="btn btn-primary" type="submit">Subscribe</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year>2026</span> HealthBridge Medical Center. All rights reserved.</span>
+        <span><a href="#">Privacy Policy</a> · <a href="#">Terms of Service</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>

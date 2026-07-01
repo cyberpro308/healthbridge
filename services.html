@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Services — HealthBridge Medical Center</title>
+  <meta name="description" content="Explore the full range of medical services at HealthBridge — cardiology, pediatrics, surgery, neurology, orthopedics, emergency care, diagnostics and more." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <div class="emergency-strip">
+    🚑 24/7 Emergency Line: <a href="tel:+23412345678">+234 (0) 1-234-5678</a> — We're always here for you
+  </div>
+
+  <header class="header">
+    <div class="container nav">
+      <a href="index.html" class="site-brand">
+        <span class="brand-mark">HB</span>
+        <span class="brand-name">Health<span>Bridge</span></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navPanel" aria-label="Toggle navigation">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+      <div class="nav-panel" id="navPanel">
+        <ul class="nav-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html" class="active">Services</a></li>
+          <li><a href="doctors.html">Doctors</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="nav-cta">
+          <a href="tel:+23412345678" class="btn btn-secondary">Call Now</a>
+          <a href="appointment.html" class="btn btn-primary">Book Appointment</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-header">
+      <div class="container">
+        <nav class="breadcrumb"><a href="index.html">Home</a> <span>/</span> <span>Services</span></nav>
+        <h1>Our Medical Services</h1>
+        <p>From routine check-ups to advanced procedures, we deliver a full spectrum of care under one roof.</p>
+      </div>
+    </section>
+
+    <!-- Featured services with images -->
+    <section class="section">
+      <div class="container">
+        <div class="card-grid reveal">
+
+          <article class="service-card" id="cardiology">
+            <div class="media">
+              <span class="tag">24/7 Available</span>
+              <img src="images/closeup-doctor-using-syringe-preparing-medicine-child-during-coronavirus-pandemic-870x580.jpg" alt="Cardiology care" loading="lazy" />
+            </div>
+            <div class="content">
+              <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-4.35-9-7.2C1.85 11.73 3.3 7.5 7.5 7.5c1.95 0 3.1 1.4 4.5 2.88C13.4 8.9 14.55 7.5 16.5 7.5 20.7 7.5 22.15 11.73 21 13.8 19 16.65 12 21 12 21z"/></svg> Cardiology</h3>
+              <p style="color:var(--muted);margin:0;font-size:.94rem;">Comprehensive heart care from prevention to advanced intervention, led by internationally trained cardiologists.</p>
+              <ul class="feature-list">
+                <li><span class="bullet">✓</span> ECG &amp; Stress Testing</li>
+                <li><span class="bullet">✓</span> Cardiac Catheterization</li>
+                <li><span class="bullet">✓</span> Pacemaker Implantation</li>
+                <li><span class="bullet">✓</span> Heart Failure Management</li>
+              </ul>
+              <div class="cta"><a class="btn btn-primary" href="appointment.html?dept=Cardiology">Book Cardiology →</a></div>
+            </div>
+          </article>
+
+          <article class="service-card" id="pediatrics">
+            <div class="media">
+              <img src="images/close-up-african-american-hand-holding-stethoscope-870x580.jpg" alt="Pediatric care" loading="lazy" />
+            </div>
+            <div class="content">
+              <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C9.79 2 8 3.79 8 6c0 1.64.99 3.03 2.4 3.67C10.15 11.12 8.45 12 7 12v2h10v-2c-1.45 0-3.15-.88-3.4-2.33C15.01 9.03 16 7.64 16 6c0-2.21-1.79-4-4-4z"/></svg> Pediatrics</h3>
+              <p style="color:var(--muted);margin:0;font-size:.94rem;">Gentle, specialised care for infants, children and adolescents — from wellness visits to complex conditions.</p>
+              <ul class="feature-list">
+                <li><span class="bullet">✓</span> Vaccination Programs</li>
+                <li><span class="bullet">✓</span> Child Development Monitoring</li>
+                <li><span class="bullet">✓</span> Pediatric Surgery</li>
+                <li><span class="bullet">✓</span> Neonatal Care</li>
+              </ul>
+              <div class="cta"><a class="btn btn-primary" href="appointment.html?dept=Pediatrics">Book Pediatrics →</a></div>
+            </div>
+          </article>
+
+          <article class="service-card" id="surgery">
+            <div class="media">
+              <span class="tag">24/7 Available</span>
+              <img src="images/surgeons-performing-operation-operation-room-768x512.jpg" alt="General surgery" loading="lazy" />
+            </div>
+            <div class="content">
+              <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 6v6a4 4 0 01-4 4 4 4 0 01-4-4V6"/><path d="M8 14h.01" stroke-linecap="round"/></svg> General Surgery</h3>
+              <p style="color:var(--muted);margin:0;font-size:.94rem;">Modern operating theatres and skilled surgical teams delivering safe, minimally invasive procedures.</p>
+              <ul class="feature-list">
+                <li><span class="bullet">✓</span> Laparoscopic Surgery</li>
+                <li><span class="bullet">✓</span> Emergency Surgery</li>
+                <li><span class="bullet">✓</span> Day Surgery</li>
+                <li><span class="bullet">✓</span> Post-operative Care</li>
+              </ul>
+              <div class="cta"><a class="btn btn-primary" href="appointment.html?dept=General%20Surgery">Book Surgery →</a></div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Specialty departments -->
+    <section class="section section--alt">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Specialty Departments</span>
+          <h2>Focused Expertise, Whole-Person Care</h2>
+          <p>Dedicated departments staffed by specialists using the latest diagnostic and treatment technology.</p>
+        </div>
+        <div class="card-grid reveal">
+          <div class="specialty-card" id="neurology">
+            <div class="spec-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c-1.1 0-2 .9-2 2v1H8v3H6v3h2v4h4v-6h2v-2h1V6h-2V4c0-1.1-.9-2-2-2z"/></svg></div>
+            <h4>Neurology</h4>
+            <p>Comprehensive brain and nervous system care.</p>
+            <ul><li>Stroke Treatment</li><li>Epilepsy Management</li><li>Neurological Testing</li></ul>
+            <span class="badge badge--danger">🛡️ Emergency Available</span>
+          </div>
+          <div class="specialty-card" id="ophthalmology">
+            <div class="spec-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M12 5c-5 0-9 4-9 7s4 7 9 7 9-4 9-7-4-7-9-7zm0 10a3 3 0 110-6 3 3 0 010 6z"/></svg></div>
+            <h4>Ophthalmology</h4>
+            <p>Complete eye care and vision services.</p>
+            <ul><li>Cataract Surgery</li><li>Retinal Care</li><li>Glaucoma Treatment</li></ul>
+          </div>
+          <div class="specialty-card" id="orthopedics">
+            <div class="spec-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 7a2 2 0 114 0 2 2 0 11-4 0zm12 10a2 2 0 114 0 2 2 0 11-4 0zM8 9l8 6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <h4>Orthopedics</h4>
+            <p>Bone, joint, and musculoskeletal treatment.</p>
+            <ul><li>Joint Replacement</li><li>Sports Medicine</li><li>Fracture Care</li></ul>
+            <span class="badge badge--danger">🛡️ Emergency Available</span>
+          </div>
+          <div class="specialty-card" id="emergency">
+            <div class="spec-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M3 13h13v-6H3v6zm0 0v6h2a1 1 0 002 0h6a1 1 0 002 0h2v-6H3z"/></svg></div>
+            <h4>Emergency Medicine</h4>
+            <p>24/7 emergency and trauma care services.</p>
+            <ul><li>Trauma Center</li><li>Critical Care</li><li>Ambulance Services</li></ul>
+            <span class="badge badge--danger">🛡️ Emergency Available</span>
+          </div>
+          <div class="specialty-card" id="laboratory">
+            <div class="spec-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 3h12v2H6zM10 21h4v-2h-4zM9 7h6v2H9zM8 10v7h8v-7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <h4>Laboratory Services</h4>
+            <p>Advanced diagnostic testing and pathology.</p>
+            <ul><li>Blood Tests</li><li>Microbiology</li><li>Molecular Diagnostics</li></ul>
+          </div>
+          <div class="specialty-card" id="maternity">
+            <div class="spec-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a3 3 0 100 6 3 3 0 000-6zm-1 8c-2 0-4 1-4 4v6h3v-4h4v4h3v-6c0-3-2-4-4-4z"/></svg></div>
+            <h4>Maternity &amp; Obstetrics</h4>
+            <p>Safe, supportive care for mother and baby.</p>
+            <ul><li>Antenatal Care</li><li>Safe Delivery</li><li>Postnatal Support</li></ul>
+            <span class="badge badge--danger">🛡️ Emergency Available</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Simple Process</span>
+          <h2>How to Get Care</h2>
+          <p>Getting the treatment you need is straightforward at HealthBridge.</p>
+        </div>
+        <div class="value-grid reveal">
+          <div class="value-card">
+            <div class="spec-icon" style="font-weight:800;font-size:1.4rem;">1</div>
+            <h4>Book</h4>
+            <p>Schedule online, by phone, or walk in for emergencies.</p>
+          </div>
+          <div class="value-card">
+            <div class="spec-icon" style="font-weight:800;font-size:1.4rem;">2</div>
+            <h4>Consult</h4>
+            <p>Meet your specialist for a thorough assessment.</p>
+          </div>
+          <div class="value-card">
+            <div class="spec-icon" style="font-weight:800;font-size:1.4rem;">3</div>
+            <h4>Treat</h4>
+            <p>Receive a personalised, evidence-based treatment plan.</p>
+          </div>
+          <div class="value-card">
+            <div class="spec-icon" style="font-weight:800;font-size:1.4rem;">4</div>
+            <h4>Recover</h4>
+            <p>Follow-up care and support until you're back to full health.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="cta-band reveal">
+          <h3>Not Sure Which Service You Need?</h3>
+          <p>Our care coordinators will help you find the right specialist. Reach out and we'll guide you.</p>
+          <div class="cta-actions">
+            <a href="appointment.html" class="btn btn-secondary btn-lg">Book Appointment</a>
+            <a href="contact.html" class="btn btn-ghost btn-lg">Ask a Question</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="logo"><span class="brand-mark">HB</span><strong>HealthBridge</strong></div>
+          <p>Leading healthcare provider in Nigeria, committed to delivering world-class medical services with compassion and excellence.</p>
+          <div class="contact-info">
+            <p>📞 <span>Emergency: +234 (0) 1-234-5678 (24/7 Available)</span></p>
+            <p>✉️ <span>info@healthbridge.com.ng</span></p>
+            <p>📍 <span>123 Ahmadu Bello Way, Victoria Island, Lagos, Nigeria</span></p>
+          </div>
+        </div>
+        <div>
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html">Our Services</a></li>
+            <li><a href="doctors.html">Doctors</a></li>
+            <li><a href="services.html#emergency">Emergency Care</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Medical Services</h3>
+          <ul>
+            <li><a href="services.html#cardiology">Cardiology</a></li>
+            <li><a href="services.html#pediatrics">Pediatrics</a></li>
+            <li><a href="services.html#surgery">General Surgery</a></li>
+            <li><a href="services.html#neurology">Neurology</a></li>
+            <li><a href="services.html#orthopedics">Orthopedics</a></li>
+            <li><a href="services.html#emergency">Emergency Medicine</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Health Newsletter</h3>
+          <p>Get health tips and medical updates delivered to your inbox.</p>
+          <form class="newsletter-form">
+            <input type="email" placeholder="Your email" aria-label="Email address" required />
+            <button class="btn btn-primary" type="submit">Subscribe</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year>2026</span> HealthBridge Medical Center. All rights reserved.</span>
+        <span><a href="#">Privacy Policy</a> · <a href="#">Terms of Service</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>

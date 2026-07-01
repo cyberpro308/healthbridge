@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact Us — HealthBridge Medical Center</title>
+  <meta name="description" content="Get in touch with HealthBridge Medical Center in Victoria Island, Lagos. Call, email, visit us, or send a message — we respond within 24 hours." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <div class="emergency-strip">
+    🚑 24/7 Emergency Line: <a href="tel:+23412345678">+234 (0) 1-234-5678</a> — We're always here for you
+  </div>
+
+  <header class="header">
+    <div class="container nav">
+      <a href="index.html" class="site-brand">
+        <span class="brand-mark">HB</span>
+        <span class="brand-name">Health<span>Bridge</span></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navPanel" aria-label="Toggle navigation">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+      <div class="nav-panel" id="navPanel">
+        <ul class="nav-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="doctors.html">Doctors</a></li>
+          <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+        <div class="nav-cta">
+          <a href="tel:+23412345678" class="btn btn-secondary">Call Now</a>
+          <a href="appointment.html" class="btn btn-primary">Book Appointment</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-header">
+      <div class="container">
+        <nav class="breadcrumb"><a href="index.html">Home</a> <span>/</span> <span>Contact</span></nav>
+        <h1>Get in Touch</h1>
+        <p>Questions, feedback, or need directions? We're here to help — reach out any way that suits you.</p>
+      </div>
+    </section>
+
+    <!-- Info cards -->
+    <section class="section">
+      <div class="container">
+        <div class="grid-3 reveal">
+          <div class="info-card">
+            <div class="spec-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.3 1l-2.2 2.2z"/></svg></div>
+            <div>
+              <h4>Call Us</h4>
+              <p>Emergency: <a href="tel:+23412345678">+234 (0) 1-234-5678</a></p>
+              <p>Reception: <a href="tel:+23412345679">+234 (0) 1-234-5679</a></p>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="spec-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zm8 7L4 6.2V6l8 5 8-5v.2L12 11z"/></svg></div>
+            <div>
+              <h4>Email Us</h4>
+              <p><a href="mailto:info@healthbridge.com.ng">info@healthbridge.com.ng</a></p>
+              <p>We respond within 24 hours.</p>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="spec-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"/></svg></div>
+            <div>
+              <h4>Visit Us</h4>
+              <p>123 Ahmadu Bello Way, Victoria Island, Lagos, Nigeria</p>
+              <p>Open 24/7 for emergencies</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Form + hours -->
+    <section class="section section--alt">
+      <div class="container">
+        <div class="split" style="align-items:start;">
+          <div class="reveal">
+            <span class="eyebrow">Send a Message</span>
+            <h2>We'd Love to Hear From You</h2>
+            <p>Fill out the form and a member of our team will get back to you shortly. For medical emergencies, please call our 24/7 line instead.</p>
+
+            <form class="form-card" data-validate style="box-shadow:var(--shadow);">
+              <div class="form-alert" role="status">✓ Thanks for reaching out! We'll reply within 24 hours.</div>
+              <div class="form-grid">
+                <div class="field">
+                  <label for="cName">Full Name <span class="req">*</span></label>
+                  <input id="cName" name="name" type="text" required placeholder="Jane Doe" />
+                  <span class="error-msg">Please enter your name.</span>
+                </div>
+                <div class="field">
+                  <label for="cEmail">Email <span class="req">*</span></label>
+                  <input id="cEmail" name="email" type="email" required placeholder="jane@email.com" />
+                  <span class="error-msg">Please enter a valid email.</span>
+                </div>
+                <div class="field">
+                  <label for="cPhone">Phone</label>
+                  <input id="cPhone" name="phone" type="tel" placeholder="+234 801 234 5678" />
+                </div>
+                <div class="field">
+                  <label for="cSubject">Subject</label>
+                  <input id="cSubject" name="subject" type="text" placeholder="How can we help?" />
+                </div>
+                <div class="field full">
+                  <label for="cMessage">Message <span class="req">*</span></label>
+                  <textarea id="cMessage" name="message" required placeholder="Write your message here..."></textarea>
+                  <span class="error-msg">Please enter a message.</span>
+                </div>
+                <div class="field full">
+                  <button class="btn btn-primary btn-lg" type="submit">Send Message</button>
+                  <p class="form-note">By submitting you agree to our privacy policy. We never share your details.</p>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <div class="reveal">
+            <div class="info-card" style="flex-direction:column;">
+              <h4 style="margin:0 0 0.8rem;">🕒 Opening Hours</h4>
+              <p style="width:100%;">
+                <strong style="color:var(--heading);">Emergency Department</strong><br>Open 24 hours, 7 days a week
+              </p>
+              <p style="width:100%;margin-top:0.8rem;">
+                <strong style="color:var(--heading);">Outpatient Clinics</strong><br>
+                Monday – Friday: 8:00 AM – 8:00 PM<br>
+                Saturday: 9:00 AM – 5:00 PM<br>
+                Sunday: 10:00 AM – 4:00 PM
+              </p>
+              <p style="width:100%;margin-top:0.8rem;">
+                <strong style="color:var(--heading);">Pharmacy &amp; Laboratory</strong><br>Open 24 hours
+              </p>
+            </div>
+
+            <div class="map-embed" style="margin-top:1.5rem;height:300px;">
+              <iframe
+                title="HealthBridge location map"
+                src="https://www.google.com/maps?q=Victoria%20Island%20Lagos%20Nigeria&output=embed"
+                loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Questions</span>
+          <h2>Frequently Asked</h2>
+          <p>Quick answers to the things patients ask us most.</p>
+        </div>
+        <div class="faq reveal">
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">Do I need a referral to book an appointment?<span class="chev">▾</span></button>
+            <div class="faq-a"><div>No referral is needed. You can book directly online, by phone, or in person for any of our specialties.</div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">Which health insurance plans do you accept?<span class="chev">▾</span></button>
+            <div class="faq-a"><div>We accept most major Nigerian HMOs and international insurers. Contact our billing desk to confirm your specific plan before your visit.</div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">What should I bring to my first visit?<span class="chev">▾</span></button>
+            <div class="faq-a"><div>Please bring a valid ID, your insurance card (if applicable), and any previous medical records or current medications.</div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">Do you offer telemedicine consultations?<span class="chev">▾</span></button>
+            <div class="faq-a"><div>Yes. Virtual consultations are available for many specialties. Select "Telemedicine" when booking your appointment.</div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">Is the emergency department really open 24/7?<span class="chev">▾</span></button>
+            <div class="faq-a"><div>Absolutely. Our emergency and trauma team, pharmacy, and laboratory operate around the clock, every day of the year.</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="logo"><span class="brand-mark">HB</span><strong>HealthBridge</strong></div>
+          <p>Leading healthcare provider in Nigeria, committed to delivering world-class medical services with compassion and excellence.</p>
+          <div class="contact-info">
+            <p>📞 <span>Emergency: +234 (0) 1-234-5678 (24/7 Available)</span></p>
+            <p>✉️ <span>info@healthbridge.com.ng</span></p>
+            <p>📍 <span>123 Ahmadu Bello Way, Victoria Island, Lagos, Nigeria</span></p>
+          </div>
+        </div>
+        <div>
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html">Our Services</a></li>
+            <li><a href="doctors.html">Doctors</a></li>
+            <li><a href="services.html#emergency">Emergency Care</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Medical Services</h3>
+          <ul>
+            <li><a href="services.html#cardiology">Cardiology</a></li>
+            <li><a href="services.html#pediatrics">Pediatrics</a></li>
+            <li><a href="services.html#surgery">General Surgery</a></li>
+            <li><a href="services.html#neurology">Neurology</a></li>
+            <li><a href="services.html#orthopedics">Orthopedics</a></li>
+            <li><a href="services.html#emergency">Emergency Medicine</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Health Newsletter</h3>
+          <p>Get health tips and medical updates delivered to your inbox.</p>
+          <form class="newsletter-form">
+            <input type="email" placeholder="Your email" aria-label="Email address" required />
+            <button class="btn btn-primary" type="submit">Subscribe</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year>2026</span> HealthBridge Medical Center. All rights reserved.</span>
+        <span><a href="#">Privacy Policy</a> · <a href="#">Terms of Service</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
